@@ -44,7 +44,7 @@ export async function POST(request) {
       },
       body: JSON.stringify({
         input: {
-          image: `data:image/jpeg;base64,${imageBase64}`,
+          control_image: `data:image/jpeg;base64,${imageBase64}`,
           prompt: fullPrompt,
           guidance: 15,
           strength: 0.85,
