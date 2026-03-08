@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const ANTHROPIC_API = "https://api.anthropic.com/v1/messages";
+const ANTHROPIC_API = "/api/claude";
 const IMAGE_PROXY = "/api/imagine";
 
 const STYLE_CARDS = [
