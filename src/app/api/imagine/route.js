@@ -9,55 +9,48 @@ export async function POST(request) {
     try {
       body = await request.json();
     } catch (e) {
-      return Response.json({ error: "Invalid JSON body: " + e.message }, { status: 400 });
+      return Response.json({ error: "Invalid JSON: " + e.message }, { status: 400 });
     }
 
     const { imageBase64, prompt, roomType, element, pollId } = body;
 
     // POLL MODE
     if (pollId) {
-      try {
-        const pollRes = await fetch(`${REPLICATE_API}/${pollId}`, {
-          headers: { Authorization: `Token ${REPLICATE_TOKEN}` },
-        });
-        const pollData = await pollRes.json();
-        return Response.json({
-          status: pollData.status,
-          imageUrl: pollData.status === "succeeded"
-            ? (Array.isArray(pollData.output) ? pollData.output[0] : pollData.output)
-            : null,
-          error: pollData.error || null,
-          logs: pollData.logs || null,
-        });
-      } catch (e) {
-        return Response.json({ error: "Poll failed: " + e.message }, { status: 500 });
-      }
+      const pollRes = await fetch(`${REPLICATE_API}/${pollId}`, {
+        headers: { Authorization: `Token ${REPLICATE_TOKEN}` },
+      });
+      const pollData = await pollRes.json();
+      return Response.json({
+        status: pollData.status,
+        imageUrl: pollData.status === "succeeded"
+          ? (Array.isArray(pollData.output) ? pollData.output[0] : pollData.output)
+          : null,
+        error: pollData.error || null,
+      });
     }
 
     // START MODE
-    if (!imageBase64) {
-      return Response.json({ error: "No imageBase64 provided" }, { status: 400 });
-    }
-
     if (!REPLICATE_TOKEN) {
       return Response.json({ error: "REPLICATE_TOKEN not set" }, { status: 500 });
     }
 
-    const instruction = prompt || `Change the ${element || "design"} to look more modern`;
+    const instruction = prompt || `A photorealistic interior design photo of a ${roomType || "room"} with ${element || "updated design"}. Professional photography, natural light, no people.`;
 
-    console.log("Starting Replicate prediction, prompt:", instruction.substring(0, 100));
-    console.log("Image size (chars):", imageBase64.length);
+    console.log("Starting prediction, prompt:", instruction.substring(0, 100));
 
+    // Use stability-ai/sdxl with img2img - well supported model
     const reqBody = {
-      version: "30c1d0b916a6f8efce20493f5d61ee27491ab2a60437c13c588468b9810ec23f",
+      version: "7762fd07cf82c948538e41f63f77d685e02b063e37e496af79950fcdefaa3d10",
       input: {
         image: `data:image/jpeg;base64,${imageBase64}`,
         prompt: instruction,
-        num_inference_steps: 50,
-        image_guidance_scale: 1.5,
-        guidance_scale: 7,
-        negative_prompt: "people, text, watermark, blurry, low quality",
+        prompt_strength: 0.65,
+        num_inference_steps: 25,
+        guidance_scale: 7.5,
+        negative_prompt: "people, text, watermark, blurry, low quality, cartoon",
         num_outputs: 1,
+        width: 768,
+        height: 768,
       },
     };
 
@@ -66,34 +59,34 @@ export async function POST(request) {
       headers: {
         Authorization: `Token ${REPLICATE_TOKEN}`,
         "Content-Type": "application/json",
+        "Prefer": "respond-async",
       },
       body: JSON.stringify(reqBody),
     });
 
     const responseText = await startRes.text();
-    console.log("Replicate response status:", startRes.status);
-    console.log("Replicate response:", responseText.substring(0, 500));
+    console.log("Replicate status:", startRes.status, "response:", responseText.substring(0, 300));
 
     let prediction;
     try {
       prediction = JSON.parse(responseText);
     } catch (e) {
-      return Response.json({ error: "Replicate returned invalid JSON: " + responseText.substring(0, 200) }, { status: 500 });
+      return Response.json({ error: "Bad JSON from Replicate: " + responseText.substring(0, 200) }, { status: 500 });
     }
 
-    if (prediction.error) {
-      return Response.json({ error: "Replicate error: " + prediction.error }, { status: 400 });
+    if (prediction.error || prediction.title) {
+      return Response.json({ error: prediction.detail || prediction.error || JSON.stringify(prediction) }, { status: 400 });
     }
 
     if (!prediction.id) {
-      return Response.json({ error: "No prediction ID returned: " + JSON.stringify(prediction).substring(0, 200) }, { status: 500 });
+      return Response.json({ error: "No ID: " + JSON.stringify(prediction) }, { status: 500 });
     }
 
-    console.log("Prediction started:", prediction.id);
+    console.log("Prediction ID:", prediction.id);
     return Response.json({ predictionId: prediction.id, status: "starting" });
 
   } catch (err) {
-    console.error("Unhandled error:", err);
-    return Response.json({ error: "Unhandled error: " + err.message }, { status: 500 });
+    console.error("Error:", err.message);
+    return Response.json({ error: err.message }, { status: 500 });
   }
 }
