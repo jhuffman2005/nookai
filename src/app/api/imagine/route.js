@@ -40,7 +40,7 @@ export async function POST(request) {
 
     // Use stability-ai/sdxl with img2img - well supported model
     const reqBody = {
-      version: "7762fd07cf82c948538e41f63f77d685e02b063e37e496af79950fcdefaa3d10",
+      version: "39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
       input: {
         image: `data:image/jpeg;base64,${imageBase64}`,
         prompt: instruction,
