@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NookAI for Real Estate — Close More. Sell Faster.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1A1814;
+    --gold: #B8965A;
+    --gold-light: #D4AE72;
+    --cream: #F7F4EE;
+    --warm-white: #FDFCFA;
+    --mid: #6B6560;
+    --border: #E4DFD6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 32px; height: 32px; background: var(--ink); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+  .nav-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600; color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-link {
+    font-size: 13px; color: var(--mid); text-decoration: none;
+    letter-spacing: 0.04em; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: var(--ink); }
+  .nav-cta {
+    padding: 10px 22px; border-radius: 8px;
+    background: var(--ink); color: #fff;
+    font-size: 13px; font-weight: 500; text-decoration: none;
+    letter-spacing: 0.03em; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #333; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: inline-block; width: 28px; height: 1px;
+    background: var(--gold);
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 5vw, 68px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--ink); margin-bottom: 28px;
+    letter-spacing: -0.5px;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 16px; line-height: 1.7; color: var(--mid);
+    max-width: 440px; margin-bottom: 44px; font-weight: 300;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 16px 36px; border-radius: 10px;
+    background: var(--ink); color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    letter-spacing: 0.03em; transition: all 0.2s;
+    border: 2px solid var(--ink);
+  }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+  .btn-secondary {
+    padding: 16px 36px; border-radius: 10px;
+    background: transparent; color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    letter-spacing: 0.03em; transition: all 0.2s;
+    border: 2px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--ink); }
+  .hero-social-proof {
+    margin-top: 52px; padding-top: 36px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 36px;
+  }
+  .proof-stat { }
+  .proof-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 600; color: var(--ink);
+    line-height: 1;
+  }
+  .proof-label {
+    font-size: 11px; color: var(--mid); letter-spacing: 0.06em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+  .proof-divider {
+    width: 1px; height: 44px; background: var(--border);
+  }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+  .hero-visual {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 48px;
+  }
+  .mockup-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.14), 0 8px 30px rgba(0,0,0,0.08);
+    width: 100%; max-width: 420px;
+    overflow: hidden;
+    animation: floatUp 0.8s ease-out both;
+  }
+  @keyframes floatUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .mockup-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .mockup-bar {
+    flex: 1; height: 8px; border-radius: 4px;
+    background: var(--border); margin-left: 8px;
+  }
+  .mockup-before-after {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .mockup-img-wrap { position: relative; }
+  .mockup-img-label {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    background: rgba(26,24,20,0.7); color: #fff;
+    padding: 3px 8px; border-radius: 4px;
+    backdrop-filter: blur(4px);
+  }
+  .mockup-img-label.after { background: rgba(184,150,90,0.9); }
+  .kitchen-before, .kitchen-after {
+    width: 100%; height: 170px; display: block; object-fit: cover;
+  }
+  .kitchen-before { background: linear-gradient(145deg, #C4B8A8 0%, #A89880 50%, #8C7A66 100%); }
+  .kitchen-after { background: linear-gradient(145deg, #2C2825 0%, #3D3530 40%, #1A1612 100%); position: relative; }
+  /* Simulated kitchen visuals */
+  .sim-kitchen { width: 100%; height: 170px; position: relative; overflow: hidden; }
+  .sim-before {
+    background: #D4C5B0;
+  }
+  .sim-after {
+    background: #1E1B17;
+  }
+  .sim-counter-before {
+    position: absolute; bottom: 35px; left: 0; right: 0; height: 20px;
+    background: #C8BAA0;
+  }
+  .sim-counter-after {
+    position: absolute; bottom: 35px; left: 0; right: 0; height: 20px;
+    background: #0A0806;
+    box-shadow: 0 -2px 8px rgba(255,255,255,0.05);
+  }
+  .sim-cabinets-before {
+    position: absolute; top: 0; left: 0; right: 0; height: 65px;
+    background: #BFB29E; border-bottom: 2px solid #A8987E;
+  }
+  .sim-cabinets-after {
+    position: absolute; top: 0; left: 0; right: 0; height: 65px;
+    background: #161310; border-bottom: 1px solid #2A2520;
+  }
+  .sim-backsplash-before {
+    position: absolute; top: 65px; left: 0; right: 0; height: 55px;
+    background: repeating-linear-gradient(90deg, #E8DDD0 0, #E8DDD0 28px, #D4C8B8 28px, #D4C8B8 30px);
+  }
+  .sim-backsplash-after {
+    position: absolute; top: 65px; left: 0; right: 0; height: 55px;
+    background: repeating-linear-gradient(90deg, #1A1714 0, #1A1714 28px, #0E0C09 28px, #0E0C09 30px);
+  }
+  .sim-lower-before {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 35px;
+    background: #BFB29E; border-top: 2px solid #A8987E;
+  }
+  .sim-lower-after {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 35px;
+    background: #161310; border-top: 1px solid #2A2520;
+  }
+  .mockup-body { padding: 18px 20px 20px; }
+  .mockup-tag {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 8px;
+  }
+  .mockup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 600; color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .mockup-desc {
+    font-size: 12px; color: var(--mid); line-height: 1.5; margin-bottom: 14px;
+  }
+  .mockup-cost {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--cream); border-radius: 8px; padding: 10px 14px;
+  }
+  .cost-label { font-size: 10px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.06em; }
+  .cost-range { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .mockup-cta-row {
+    margin-top: 12px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .mockup-btn {
+    padding: 10px; border-radius: 8px; font-size: 11px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    text-align: center; cursor: pointer; border: none;
+    letter-spacing: 0.03em;
+  }
+  .mockup-btn-dark { background: var(--ink); color: #fff; }
+  .mockup-btn-outline { background: transparent; border: 1px solid var(--border); color: var(--ink); }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 80px; }
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 24px; height: 1px; background: var(--gold);
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 4vw, 52px); font-weight: 300; line-height: 1.15;
+    color: var(--ink); margin-bottom: 18px;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .how-inner { max-width: 1100px; margin: 0 auto; }
+  .how-header { text-align: center; margin-bottom: 72px; }
+  .how-header p { font-size: 17px; color: var(--mid); font-weight: 300; max-width: 520px; margin: 0 auto; }
+  .how-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .how-steps::before {
+    content: '';
+    position: absolute; top: 28px; left: calc(16.66% + 16px); right: calc(16.66% + 16px);
+    height: 1px; background: var(--border); z-index: 0;
+  }
+  .how-step { padding: 0 32px; text-align: center; position: relative; z-index: 1; }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--warm-white); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600; color: var(--gold);
+  }
+  .how-step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600; color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .how-step p {
+    font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300;
+  }
+
+  /* ── USE CASES ── */
+  .use-section { max-width: 1200px; margin: 0 auto; }
+  .use-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .use-card {
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 36px; background: var(--warm-white);
+    transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .use-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .use-card:hover { border-color: var(--gold-light); box-shadow: 0 12px 40px rgba(0,0,0,0.07); }
+  .use-card:hover::before { transform: scaleX(1); }
+  .use-icon {
+    width: 48px; height: 48px; background: var(--cream); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 20px;
+  }
+  .use-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 600; color: var(--ink); margin-bottom: 10px;
+  }
+  .use-card p { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; }
+  .use-card .use-quote {
+    margin-top: 20px; padding: 14px 16px;
+    background: var(--cream); border-radius: 10px; border-left: 3px solid var(--gold);
+    font-size: 13px; color: var(--ink); line-height: 1.55; font-style: italic;
+  }
+
+  /* ── PRICING ── */
+  .pricing-section {
+    background: var(--ink); color: #fff;
+    text-align: center;
+  }
+  .pricing-section h2 { color: #fff; }
+  .pricing-section h2 em { color: var(--gold-light); }
+  .pricing-section .section-eyebrow { justify-content: center; }
+  .pricing-section .section-eyebrow::before { background: var(--gold-light); }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 960px; margin: 56px auto 0;
+  }
+  .pricing-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 36px 32px;
+    text-align: left; position: relative;
+    transition: border-color 0.2s;
+  }
+  .pricing-card.featured {
+    background: rgba(184,150,90,0.12);
+    border-color: var(--gold);
+  }
+  .pricing-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #fff;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 14px; border-radius: 20px; font-weight: 500;
+    white-space: nowrap;
+  }
+  .pricing-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 8px;
+  }
+  .pricing-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600; color: #fff; margin-bottom: 4px;
+  }
+  .pricing-price {
+    font-size: 40px; font-weight: 300; color: #fff; line-height: 1;
+    margin: 16px 0 4px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .pricing-price span { font-size: 18px; vertical-align: top; margin-top: 8px; display: inline-block; }
+  .pricing-period { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
+  .pricing-features { list-style: none; margin-bottom: 32px; }
+  .pricing-features li {
+    font-size: 13px; color: rgba(255,255,255,0.7); padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 8px; font-weight: 300;
+  }
+  .pricing-features li::before { content: '✓'; color: var(--gold-light); font-size: 12px; flex-shrink: 0; }
+  .pricing-btn {
+    width: 100%; padding: 13px; border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s; text-align: center;
+    border: none;
+  }
+  .pricing-btn-outline {
+    background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff;
+  }
+  .pricing-btn-outline:hover { border-color: rgba(255,255,255,0.5); }
+  .pricing-btn-gold { background: var(--gold); color: #fff; }
+  .pricing-btn-gold:hover { background: var(--gold-light); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section {
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+  }
+  .test-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; max-width: 1100px; margin: 56px auto 0;
+  }
+  .test-card {
+    background: var(--warm-white); border-radius: 16px;
+    padding: 32px; border: 1px solid var(--border);
+  }
+  .test-stars { color: var(--gold); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+  .test-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 400; line-height: 1.6;
+    color: var(--ink); margin-bottom: 20px; font-style: italic;
+  }
+  .test-author { display: flex; align-items: center; gap: 12px; }
+  .test-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--cream); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .test-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .test-role { font-size: 11px; color: var(--mid); margin-top: 2px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center; padding: 120px 80px;
+    background: var(--warm-white);
+    border-top: 1px solid var(--border);
+  }
+  .cta-section h2 { margin-bottom: 18px; }
+  .cta-section p {
+    font-size: 17px; color: var(--mid); max-width: 520px;
+    margin: 0 auto 44px; font-weight: 300; line-height: 1.65;
+  }
+  .cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .demo-form {
+    display: flex; gap: 12px; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 20px; max-width: 540px; margin: 0 auto 12px;
+  }
+  .demo-input {
+    flex: 1; min-width: 200px;
+    padding: 15px 18px; border-radius: 10px;
+    border: 1.5px solid var(--border); background: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);
+    outline: none; transition: border-color 0.2s;
+  }
+  .demo-input:focus { border-color: var(--gold); }
+  .demo-input::placeholder { color: #bbb; }
+  .demo-submit {
+    padding: 15px 32px; border-radius: 10px;
+    background: var(--gold); color: #fff; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: background 0.2s; white-space: nowrap;
+  }
+  .demo-submit:hover { background: var(--gold-light); }
+  .cta-note { font-size: 12px; color: var(--mid); margin-top: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 36px 80px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600; color: var(--ink);
+  }
+  .footer-copy { font-size: 12px; color: var(--mid); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; color: var(--mid); text-decoration: none; }
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 60px 32px; }
+    .hero-right { height: 400px; }
+    section { padding: 72px 32px; }
+    .how-steps { grid-template-columns: 1fr; gap: 40px; }
+    .how-steps::before { display: none; }
+    .use-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .test-grid { grid-template-columns: 1fr; }
+    nav { padding: 18px 24px; }
+    .nav-right .nav-link { display: none; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">🏠</div>
+    <span class="nav-logo-text">NookAI</span>
+  </a>
+  <div class="nav-right">
+    <a href="#how" class="nav-link">How It Works</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#demo" class="nav-cta">Book a Demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">For Real Estate Professionals</div>
+    <h1>Show buyers<br>what a home<br><em>could become.</em></h1>
+    <p class="hero-sub">NookAI lets you show any listing's potential — in under 90 seconds. Upload a photo, pick a style, and watch a dated kitchen transform into exactly what your buyer is imagining.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn-primary">Book a Demo →</a>
+      <a href="https://nookai-one.vercel.app" target="_blank" class="btn-secondary">Try It Free</a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="proof-stat">
+        <div class="proof-num">90s</div>
+        <div class="proof-label">Avg. generation time</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <div class="proof-num">12+</div>
+        <div class="proof-label">Design styles</div>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <div class="proof-num">$0</div>
+        <div class="proof-label">Design degree needed</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="mockup-card">
+        <div class="mockup-header">
+          <div class="mockup-dot" style="background:#E8574A"></div>
+          <div class="mockup-dot" style="background:#F5A623;margin-left:5px"></div>
+          <div class="mockup-dot" style="background:#57C254;margin-left:5px"></div>
+          <div class="mockup-bar"></div>
+        </div>
+        <div class="mockup-before-after">
+          <div class="mockup-img-wrap">
+            <div class="mockup-img-label">Before</div>
+            <div class="sim-kitchen sim-before">
+              <div class="sim-cabinets-before"></div>
+              <div class="sim-backsplash-before"></div>
+              <div class="sim-counter-before"></div>
+              <div class="sim-lower-before"></div>
+            </div>
+          </div>
+          <div class="mockup-img-wrap">
+            <div class="mockup-img-label after">✦ After</div>
+            <div class="sim-kitchen sim-after">
+              <div class="sim-cabinets-after"></div>
+              <div class="sim-backsplash-after"></div>
+              <div class="sim-counter-after"></div>
+              <div class="sim-lower-after"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-tag">✦ Luxe Modern Kitchen</div>
+          <div class="mockup-title">Dark Drama Done Right</div>
+          <div class="mockup-desc">Matte black cabinetry, waterfall quartz island, statement pendant lighting.</div>
+          <div class="mockup-cost">
+            <div>
+              <div class="cost-label">Estimated Remodel</div>
+              <div class="cost-range">$28,000 – $65,000</div>
+            </div>
+            <div style="font-size:20px">✦</div>
+          </div>
+          <div class="mockup-cta-row">
+            <button class="mockup-btn mockup-btn-dark">Get Contractor Quotes</button>
+            <button class="mockup-btn mockup-btn-outline">Try Another Style</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="how-header fade-in">
+      <div class="section-eyebrow" style="justify-content:center">How It Works</div>
+      <h2>From listing photo to buyer <em>vision</em><br>in three steps.</h2>
+      <p>No design experience needed. No software to install. Works from any device — including your phone during a showing.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step fade-in">
+        <div class="step-num">1</div>
+        <h3>Upload a photo</h3>
+        <p>Snap a photo of any room — kitchen, bath, living room. Any angle, any quality. Your phone camera works perfectly.</p>
+      </div>
+      <div class="how-step fade-in" style="transition-delay:0.1s">
+        <div class="step-num">2</div>
+        <h3>Pick a style & budget</h3>
+        <p>Choose from 12 design styles and three budget tiers. Good/Better/Best — from budget-smart to price-is-no-object.</p>
+      </div>
+      <div class="how-step fade-in" style="transition-delay:0.2s">
+        <div class="step-num">3</div>
+        <h3>Show the buyer their home</h3>
+        <p>In under 90 seconds, NookAI generates a photorealistic render of the remodeled space — complete with cost estimates and material recommendations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section style="padding: 100px 80px;">
+  <div class="use-section">
+    <div class="section-eyebrow fade-in">Real Estate Use Cases</div>
+    <h2 class="fade-in">Built for every stage<br>of the transaction.</h2>
+    <div class="use-grid">
+      <div class="use-card fade-in">
+        <div class="use-icon">🏠</div>
+        <h3>Listing Presentations</h3>
+        <p>Walk sellers through what their home looks like professionally staged and updated. Show them the gap between "as-is" and "full potential" — and price the listing to reflect it.</p>
+        <div class="use-quote">"I used NookAI in my listing presentation and the sellers immediately agreed to a $15k pre-sale kitchen update. Closed $40k over ask."</div>
+      </div>
+      <div class="use-card fade-in" style="transition-delay:0.1s">
+        <div class="use-icon">🔑</div>
+        <h3>Buyer Showings</h3>
+        <p>Standing in a dated kitchen with a reluctant buyer? Pull out your phone, snap a photo, and show them exactly what it looks like remodeled. Turn hesitation into offers.</p>
+        <div class="use-quote">"My buyer almost walked on a house because of the bathrooms. I showed her the NookAI render on my iPad. She made an offer that afternoon."</div>
+      </div>
+      <div class="use-card fade-in" style="transition-delay:0.2s">
+        <div class="use-icon">📋</div>
+        <h3>Fixer-Upper Marketing</h3>
+        <p>Listings that need work sit longer. NookAI lets you market the potential, not the problem. Include before/after renders in your listing photos and MLS description.</p>
+        <div class="use-quote">"Days on market dropped from 47 to 12 after I started including NookAI renders in fixer-upper listings."</div>
+      </div>
+      <div class="use-card fade-in" style="transition-delay:0.3s">
+        <div class="use-icon">🤝</div>
+        <h3>Builder & New Construction</h3>
+        <p>Show model home variations without building multiple models. Let buyers visualize different finish packages, styles, and upgrade options before they commit.</p>
+        <div class="use-quote">"We use NookAI in our design center to show buyers all three finish packages side by side. Upgrade attachment rate is up 34%."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-eyebrow">Simple Pricing</div>
+  <h2>The right plan for your<br><em>business size.</em></h2>
+  <div class="pricing-grid">
+    <div class="pricing-card fade-in">
+      <div class="pricing-label">Individual Agent</div>
+      <div class="pricing-name">Solo</div>
+      <div class="pricing-price"><span>$</span>49</div>
+      <div class="pricing-period">per month</div>
+      <ul class="pricing-features">
+        <li>50 room renders per month</li>
+        <li>All 12 design styles</li>
+        <li>Good / Better / Best budgets</li>
+        <li>Before & after downloads</li>
+        <li>Mobile-ready (works on iPad)</li>
+        <li>Email support</li>
+      </ul>
+      <button class="pricing-btn pricing-btn-outline" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">Get Started</button>
+    </div>
+    <div class="pricing-card featured fade-in" style="transition-delay:0.1s">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-label">Team / Office</div>
+      <div class="pricing-name">Team</div>
+      <div class="pricing-price"><span>$</span>99</div>
+      <div class="pricing-period">per agent / month</div>
+      <ul class="pricing-features">
+        <li>Unlimited renders</li>
+        <li>All 12 design styles</li>
+        <li>Good / Better / Best budgets</li>
+        <li>Before & after downloads</li>
+        <li>Team admin dashboard</li>
+        <li>Co-branded output (your logo)</li>
+        <li>Priority support</li>
+      </ul>
+      <button class="pricing-btn pricing-btn-gold" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">Book a Demo</button>
+    </div>
+    <div class="pricing-card fade-in" style="transition-delay:0.2s">
+      <div class="pricing-label">Brokerage / Franchise</div>
+      <div class="pricing-name">Enterprise</div>
+      <div class="pricing-price" style="font-size:28px;margin-top:20px;margin-bottom:10px">Let's Talk</div>
+      <div class="pricing-period">custom pricing</div>
+      <ul class="pricing-features">
+        <li>Volume agent licensing</li>
+        <li>Preferred Partner branding</li>
+        <li>Custom onboarding & training</li>
+        <li>API access for MLS integration</li>
+        <li>Dedicated account manager</li>
+        <li>SLA & compliance support</li>
+      </ul>
+      <button class="pricing-btn pricing-btn-outline" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">Contact Sales</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div style="max-width:1100px;margin:0 auto;padding:0">
+    <div style="text-align:center" class="fade-in">
+      <div class="section-eyebrow" style="justify-content:center">What Agents Are Saying</div>
+      <h2>Real results from<br>real estate professionals.</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card fade-in">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"I used to lose listings to agents who brought in a stager. Now I bring NookAI and show sellers the digital version in the kitchen before I've even left. It's a closer."</div>
+        <div class="test-author">
+          <div class="test-avatar">👩</div>
+          <div>
+            <div class="test-name">Sarah M.</div>
+            <div class="test-role">Top Producer · Keller Williams · Dallas, TX</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card fade-in" style="transition-delay:0.1s">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"My team uses it on every showing with a buyer on the fence. The renders are good enough that buyers stop seeing 'what is' and start seeing 'what could be.' That's the whole game."</div>
+        <div class="test-author">
+          <div class="test-avatar">👨</div>
+          <div>
+            <div class="test-name">Marcus R.</div>
+            <div class="test-role">Team Lead · RE/MAX · Phoenix, AZ</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card fade-in" style="transition-delay:0.2s">
+        <div class="test-stars">★★★★★</div>
+        <div class="test-quote">"We rolled it out to our whole office. Average days-on-market for listings where we used NookAI in the marketing is down 28%. It pays for itself on the first listing."</div>
+        <div class="test-author">
+          <div class="test-avatar">👩</div>
+          <div>
+            <div class="test-name">Jennifer K.</div>
+            <div class="test-role">Broker-Owner · Coldwell Banker · Atlanta, GA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / DEMO FORM -->
+<section class="cta-section" id="demo">
+  <div class="section-eyebrow fade-in" style="justify-content:center">Get Started</div>
+  <h2 class="fade-in">Ready to close more?<br><em>Let's talk.</em></h2>
+  <p class="fade-in">We'll walk you through NookAI live, answer your questions, and set you up on the right plan. Takes 20 minutes.</p>
+  <div class="fade-in">
+    <div class="demo-form">
+      <input type="text" placeholder="Your name" class="demo-input" />
+      <input type="email" placeholder="Work email" class="demo-input" />
+    </div>
+    <div class="demo-form" style="margin-top:10px">
+      <input type="text" placeholder="Brokerage / Office name" class="demo-input" />
+      <input type="text" placeholder="# of agents on your team" class="demo-input" />
+    </div>
+    <div style="text-align:center;margin-top:16px">
+      <button class="demo-submit">Request My Demo →</button>
+    </div>
+    <p class="cta-note">No commitment. No credit card. Just a 20-minute conversation.</p>
+  </div>
+  <div style="margin-top:44px;padding-top:36px;border-top:1px solid var(--border);text-align:center" class="fade-in">
+    <p style="font-size:14px;color:var(--mid);margin-bottom:16px">Or try it yourself right now — no account needed.</p>
+    <a href="https://nookai-one.vercel.app" target="_blank" class="btn-secondary" style="display:inline-block">Try NookAI Free →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NookAI</div>
+  <div class="footer-copy">© 2025 NookAI. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="mailto:hello@nookai.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Demo form submit
+  document.querySelector('.demo-submit').addEventListener('click', function() {
+    const inputs = document.querySelectorAll('.demo-input');
+    const filled = [...inputs].every(i => i.value.trim());
+    if (filled) {
+      this.textContent = '✓ Request Received — We\'ll be in touch!';
+      this.style.background = '#2C2C2C';
+      this.disabled = true;
+    } else {
+      inputs.forEach(i => { if (!i.value.trim()) i.style.borderColor = '#E05555'; });
+    }
+  });
+</script>
+</body>
+</html>
