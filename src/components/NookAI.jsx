@@ -18,22 +18,124 @@ const STYLE_CARDS = [
   { id: "luxemodern", label: "Luxe Modern", emoji: "💎", desc: "High-gloss, marble, dramatic sophistication" },
 ];
 
-const SPECIFIC_ELEMENTS = [
-  { id: "countertops", label: "Countertops", emoji: "🔲" },
-  { id: "cabinets", label: "Cabinets", emoji: "🗄️" },
-  { id: "flooring", label: "Flooring", emoji: "▦" },
-  { id: "wallcolor", label: "Wall Color", emoji: "🎨" },
-  { id: "lighting", label: "Lighting", emoji: "💡" },
-  { id: "hardware", label: "Hardware & Fixtures", emoji: "🔩" },
-  { id: "backsplash", label: "Backsplash", emoji: "🧱" },
-  { id: "furniture", label: "Furniture", emoji: "🛋️" },
-  { id: "textiles", label: "Textiles & Rugs", emoji: "🧶" },
-  { id: "decor", label: "Decor & Accessories", emoji: "🪴" },
-  { id: "appliances", label: "Appliances", emoji: "🔌" },
-  { id: "windows", label: "Windows & Treatments", emoji: "🪟" },
-  { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
-  { id: "island", label: "Kitchen Island", emoji: "🍳" },
-];
+const ROOM_ELEMENTS = {
+  "Kitchen": [
+    { id: "countertops", label: "Countertops", emoji: "🔲" },
+    { id: "cabinets", label: "Cabinets", emoji: "🗄️" },
+    { id: "backsplash", label: "Backsplash", emoji: "🧱" },
+    { id: "flooring", label: "Flooring", emoji: "▦" },
+    { id: "island", label: "Kitchen Island", emoji: "🍳" },
+    { id: "appliances", label: "Appliances", emoji: "🔌" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "hardware", label: "Hardware & Fixtures", emoji: "🔩" },
+    { id: "wallcolor", label: "Wall Color", emoji: "🎨" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+    { id: "sink", label: "Sink & Faucet", emoji: "🚰" },
+    { id: "windows", label: "Windows & Treatments", emoji: "🪟" },
+  ],
+  "Bathroom": [
+    { id: "shower", label: "Shower & Surround", emoji: "🚿" },
+    { id: "tile", label: "Tile & Flooring", emoji: "🔲" },
+    { id: "vanity", label: "Vanity & Sink", emoji: "🪞" },
+    { id: "bathtub", label: "Bathtub", emoji: "🛁" },
+    { id: "toilet", label: "Toilet", emoji: "🚽" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "hardware", label: "Hardware & Fixtures", emoji: "🔩" },
+    { id: "mirror", label: "Mirror", emoji: "🪟" },
+    { id: "wallcolor", label: "Wall Color / Wallpaper", emoji: "🎨" },
+    { id: "storage", label: "Storage & Shelving", emoji: "🗄️" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+  ],
+  "Living Room": [
+    { id: "flooring", label: "Flooring", emoji: "▦" },
+    { id: "wallcolor", label: "Wall Color / Wallpaper", emoji: "🎨" },
+    { id: "furniture", label: "Furniture", emoji: "🛋️" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "textiles", label: "Textiles & Rugs", emoji: "🧶" },
+    { id: "windows", label: "Windows & Treatments", emoji: "🪟" },
+    { id: "fireplace", label: "Fireplace", emoji: "🔥" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+    { id: "decor", label: "Decor & Accessories", emoji: "🪴" },
+    { id: "shelving", label: "Shelving & Built-ins", emoji: "📚" },
+  ],
+  "Bedroom": [
+    { id: "flooring", label: "Flooring", emoji: "▦" },
+    { id: "wallcolor", label: "Wall Color / Wallpaper", emoji: "🎨" },
+    { id: "furniture", label: "Furniture & Bed", emoji: "🛏️" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "textiles", label: "Textiles & Bedding", emoji: "🧶" },
+    { id: "windows", label: "Windows & Treatments", emoji: "🪟" },
+    { id: "closet", label: "Closet & Storage", emoji: "🗄️" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+    { id: "decor", label: "Decor & Accessories", emoji: "🪴" },
+  ],
+  "Dining Room": [
+    { id: "flooring", label: "Flooring", emoji: "▦" },
+    { id: "wallcolor", label: "Wall Color / Wallpaper", emoji: "🎨" },
+    { id: "furniture", label: "Table & Chairs", emoji: "🪑" },
+    { id: "lighting", label: "Lighting & Chandelier", emoji: "💡" },
+    { id: "textiles", label: "Textiles & Rugs", emoji: "🧶" },
+    { id: "windows", label: "Windows & Treatments", emoji: "🪟" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+    { id: "decor", label: "Decor & Accessories", emoji: "🪴" },
+    { id: "bar", label: "Bar / Buffet", emoji: "🍷" },
+  ],
+  "Home Office": [
+    { id: "flooring", label: "Flooring", emoji: "▦" },
+    { id: "wallcolor", label: "Wall Color / Wallpaper", emoji: "🎨" },
+    { id: "furniture", label: "Desk & Chair", emoji: "🖥️" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "storage", label: "Storage & Shelving", emoji: "📚" },
+    { id: "windows", label: "Windows & Treatments", emoji: "🪟" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+    { id: "decor", label: "Decor & Accessories", emoji: "🪴" },
+  ],
+  "Outdoor / Patio": [
+    { id: "flooring", label: "Flooring & Decking", emoji: "▦" },
+    { id: "furniture", label: "Outdoor Furniture", emoji: "🪑" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "shade", label: "Pergola & Shade", emoji: "⛱️" },
+    { id: "kitchen", label: "Outdoor Kitchen / Grill", emoji: "🍳" },
+    { id: "landscaping", label: "Landscaping & Planters", emoji: "🌿" },
+    { id: "firepit", label: "Fire Pit", emoji: "🔥" },
+    { id: "fencing", label: "Fencing & Privacy", emoji: "🪵" },
+  ],
+  "Basement": [
+    { id: "flooring", label: "Flooring", emoji: "▦" },
+    { id: "wallcolor", label: "Wall Color / Finish", emoji: "🎨" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "furniture", label: "Furniture", emoji: "🛋️" },
+    { id: "bar", label: "Bar / Wet Bar", emoji: "🍷" },
+    { id: "storage", label: "Storage & Built-ins", emoji: "🗄️" },
+    { id: "bathroom", label: "Bathroom / Half Bath", emoji: "🚿" },
+    { id: "media", label: "Media Wall", emoji: "📺" },
+  ],
+  "Entryway / Foyer": [
+    { id: "flooring", label: "Flooring", emoji: "▦" },
+    { id: "wallcolor", label: "Wall Color / Wallpaper", emoji: "🎨" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "furniture", label: "Console & Furniture", emoji: "🛋️" },
+    { id: "storage", label: "Storage & Hooks", emoji: "🗄️" },
+    { id: "mirror", label: "Mirror", emoji: "🪞" },
+    { id: "door", label: "Front Door", emoji: "🚪" },
+    { id: "decor", label: "Decor & Accessories", emoji: "🪴" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+  ],
+  "default": [
+    { id: "flooring", label: "Flooring", emoji: "▦" },
+    { id: "wallcolor", label: "Wall Color", emoji: "🎨" },
+    { id: "lighting", label: "Lighting", emoji: "💡" },
+    { id: "furniture", label: "Furniture", emoji: "🛋️" },
+    { id: "textiles", label: "Textiles & Rugs", emoji: "🧶" },
+    { id: "decor", label: "Decor & Accessories", emoji: "🪴" },
+    { id: "windows", label: "Windows & Treatments", emoji: "🪟" },
+    { id: "ceiling", label: "Ceiling", emoji: "⬆️" },
+    { id: "hardware", label: "Hardware & Fixtures", emoji: "🔩" },
+  ],
+};
+
+const getElementsForRoom = (roomType) => ROOM_ELEMENTS[roomType] || ROOM_ELEMENTS["default"];
 
 const BUDGET_TIERS = [
   { id: "budget", label: "Budget Smart", emoji: "💰", desc: "Maximize impact per dollar" },
@@ -305,6 +407,8 @@ function SpecificChangeFlow({ photo, photoBase64, roomType, onReset }) {
   const [genImage, setGenImage] = useState(null);
   const [error, setError] = useState(null);
 
+  const elements = getElementsForRoom(roomType);
+
   const toggleEl = (el) => {
     setSelectedEls(prev =>
       prev.find(e => e.id === el.id) ? prev.filter(e => e.id !== el.id) : [...prev, el]
@@ -362,7 +466,9 @@ function SpecificChangeFlow({ photo, photoBase64, roomType, onReset }) {
       {step === "Elements" && (
         <div style={S.cardWide}>
           <h2 style={{ fontSize: 23, fontWeight: 700, color: "#2C2C2C", marginBottom: 8, marginTop: 0 }}>What do you want to change?</h2>
-          <p style={{ color: "#888", fontSize: 14, fontFamily: "sans-serif", marginBottom: 6, marginTop: 0 }}>Pick one or more elements — mix and match freely.</p>
+          <p style={{ color: "#888", fontSize: 14, fontFamily: "sans-serif", marginBottom: 6, marginTop: 0 }}>
+            {roomType ? <span>Showing elements for your <strong style={{ color: "#2C2C2C" }}>{roomType}</strong> — pick one or more.</span> : "Pick one or more elements — mix and match freely."}
+          </p>
           {selectedEls.length > 0 && (
             <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 16 }}>
               {selectedEls.map(el => (
@@ -375,7 +481,7 @@ function SpecificChangeFlow({ photo, photoBase64, roomType, onReset }) {
             </div>
           )}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))", gap: 10, marginBottom: 22 }}>
-            {SPECIFIC_ELEMENTS.map(el => {
+            {elements.map(el => {
               const isSel = !!selectedEls.find(e => e.id === el.id);
               return <div key={el.id} onClick={() => toggleEl(el)} style={{ padding: "15px 10px", borderRadius: 12, cursor: "pointer", border: "2px solid " + (isSel ? "#C8A96E" : "#E8E8E8"), background: isSel ? "#FDF8F0" : "#fff", textAlign: "center", transition: "all 0.2s", boxShadow: isSel ? "0 4px 12px rgba(200,169,110,0.2)" : "none" }}>
                 <div style={{ fontSize: 24, marginBottom: 5 }}>{el.emoji}</div>
