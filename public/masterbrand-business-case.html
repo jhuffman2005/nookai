@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NookAI × MasterBrand — Business Case</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1A1814;--gold:#B8965A;--gold-light:#D4AE72;--cream:#F7F4EE;--warm-white:#FDFCFA;--mid:#6B6560;--border:#E4DFD6;--mb:#C41230;--mb-dark:#9E0E27;--green:#2D7D46;--green-light:#6DBF8A}
+html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--ink);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:62px;background:var(--ink)}
+.nav-left{display:flex;align-items:center}
+.nav-brand{display:flex;align-items:center;gap:9px;text-decoration:none;padding-right:20px;border-right:1px solid rgba(255,255,255,0.12)}
+.nav-mark{width:28px;height:28px;background:var(--gold);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.nav-brand-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#fff}
+.nav-partner{display:flex;align-items:center;gap:8px;padding-left:20px}
+.nav-sub{font-size:12px;color:rgba(255,255,255,0.4)}.nav-name{font-size:14px;font-weight:600;color:#fff}
+.nav-dot{width:7px;height:7px;background:var(--mb);border-radius:50%}
+.nav-badge{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);padding:3px 10px;border:1px solid rgba(255,255,255,0.12);border-radius:4px}
+.hero{margin-top:62px;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--ink);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(196,18,48,0.08),transparent);pointer-events:none}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 60px 80px 80px;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-light);font-weight:500;margin-bottom:22px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold-light)}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.2vw,62px);font-weight:300;line-height:1.08;color:#fff;margin-bottom:20px;letter-spacing:-0.5px}
+h1 em{font-style:italic;color:var(--gold-light)}
+.hero-sub{font-size:14px;line-height:1.75;color:rgba(255,255,255,0.5);max-width:420px;margin-bottom:32px;font-weight:300}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.btn-mb{display:inline-block;padding:13px 26px;border-radius:9px;background:var(--mb);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s}
+.btn-mb:hover{background:var(--mb-dark)}
+.btn-ghost{display:inline-block;padding:13px 26px;border-radius:9px;background:transparent;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);cursor:pointer;transition:border-color 0.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5)}
+.room-reach{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.rtile{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:11px;padding:13px;position:relative;transition:all 0.2s}
+.rtile.mb{background:rgba(196,18,48,0.1);border-color:rgba(196,18,48,0.35)}
+.ri{font-size:17px;margin-bottom:6px}.rn{font-size:12px;font-weight:500;color:#fff;margin-bottom:2px}.re{font-size:10px;color:rgba(255,255,255,0.35);line-height:1.4}
+.mbt{position:absolute;top:6px;right:6px;background:var(--mb);color:#fff;font-size:8px;letter-spacing:0.06em;text-transform:uppercase;padding:2px 5px;border-radius:3px;font-weight:600}
+.hero-right{display:flex;align-items:center;justify-content:center;padding:60px 44px;position:relative;z-index:1}
+.dphone{background:var(--warm-white);border-radius:20px;box-shadow:0 44px 90px rgba(0,0,0,0.4);width:310px;overflow:hidden;animation:fU 0.9s ease-out both}
+@keyframes fU{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.pbar{padding:10px 15px;background:var(--ink);display:flex;align-items:center;gap:6px}
+.pd{width:7px;height:7px;border-radius:50%}.pl{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,0.1);margin-left:5px}
+.rtabs{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.rtabs::-webkit-scrollbar{display:none}
+.rtab{padding:9px 11px;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--mid);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s;flex-shrink:0}
+.rtab.active{color:var(--ink);border-color:var(--gold)}
+.dcont{padding:15px}
+.dce{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:5px}
+.dct{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:10px}
+.dcv{height:105px;border-radius:8px;margin-bottom:11px;position:relative;overflow:hidden}
+.vk{background:linear-gradient(160deg,#2C2520,#1A1512)}
+.vku{position:absolute;top:0;left:0;right:0;height:42px;background:#161310;border-bottom:1px solid #2A2520}
+.vkb{position:absolute;top:42px;left:0;right:0;height:24px;background:repeating-linear-gradient(90deg,#1A1714 0,#1A1714 24px,#0E0C09 24px,#0E0C09 26px)}
+.vkc{position:absolute;top:64px;left:0;right:0;height:11px;background:#0D0A07}
+.vkl{position:absolute;bottom:0;left:0;right:0;height:34px;background:#161310;border-top:1px solid #2A2520}
+.vba{background:linear-gradient(160deg,#E8E2DA,#D4CEC6)}
+.vbaw{position:absolute;inset:0;background:repeating-linear-gradient(0deg,#E8E2DA 0,#E8E2DA 20px,#D4CEC6 20px,#D4CEC6 21px)}
+.vbav{position:absolute;bottom:0;left:0;right:0;height:38px;background:#2C2520;border-top:2px solid #0D0A07}
+.vbam{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:50px;height:38px;background:rgba(255,255,255,0.4);border-radius:3px;border:1px solid rgba(255,255,255,0.6)}
+.vbas{position:absolute;top:0;right:0;bottom:38px;width:40px;background:rgba(255,255,255,0.15);border-left:1px solid rgba(255,255,255,0.3)}
+.vl{background:linear-gradient(160deg,#F0EAE0,#E0D8CC)}
+.vlw{position:absolute;top:0;left:0;right:0;bottom:58px;background:#EDE4D8}
+.vlwi{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:38px;height:30px;background:rgba(200,220,240,0.5);border:1px solid rgba(200,220,240,0.8);border-radius:2px}
+.vls{position:absolute;bottom:22px;left:8px;right:8px;height:36px;background:#8C7A66;border-radius:5px 5px 0 0}
+.vlf{position:absolute;bottom:0;left:0;right:0;height:22px;background:#C4B09A}
+.vbed{background:#2C2825}
+.vbedb{position:absolute;bottom:0;left:15px;right:15px;height:48px;background:#1A1512}
+.vbedh{position:absolute;bottom:38px;left:15px;right:15px;height:22px;background:#3D3530;border-radius:3px 3px 0 0}
+.vbedp1{position:absolute;bottom:42px;left:21px;width:28px;height:14px;background:#4A4540;border-radius:3px}
+.vbedp2{position:absolute;bottom:42px;right:21px;width:28px;height:14px;background:#4A4540;border-radius:3px}
+.vout{background:#6A9A6A}
+.vosk{position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(180deg,#87CEEB,#B8D8EC)}
+.vodk{position:absolute;bottom:17px;left:0;right:0;height:26px;background:#C4A882}
+.vogd{position:absolute;bottom:0;left:0;right:0;height:17px;background:#7A9A5A}
+.voch{position:absolute;bottom:26px;left:26px;width:24px;height:20px;background:#8C6A42;border-radius:3px 3px 0 0}
+.drl{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-bottom:7px;display:flex;align-items:center;gap:5px}
+.drl::after{content:'';flex:1;height:1px;background:var(--border)}
+.mbi{display:inline-flex;align-items:center;gap:3px;background:rgba(196,18,48,0.08);border:1px solid rgba(196,18,48,0.15);border-radius:3px;padding:1px 5px}
+.mbid{width:4px;height:4px;background:var(--mb);border-radius:50%}
+.mbit{font-size:8px;color:var(--mb);font-weight:600;letter-spacing:0.06em;text-transform:uppercase}
+.rlist{display:flex;flex-direction:column;gap:6px;margin-bottom:11px}
+.ritem{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:7px;background:var(--cream);cursor:pointer;border:1.5px solid transparent;transition:all 0.2s}
+.ritem.sel{background:#FDF8F0;border-color:var(--mb)}
+.rsw{width:22px;height:22px;border-radius:5px;flex-shrink:0;border:1px solid rgba(0,0,0,0.08)}
+.rn2{font-size:11px;font-weight:500;color:var(--ink)}.rb{font-size:9px;color:var(--mid)}
+.rp{font-size:11px;font-weight:600;color:var(--gold);margin-left:auto;font-family:'Cormorant Garamond',serif;white-space:nowrap}
+.dbtns{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.dbtn{padding:9px;border-radius:7px;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;border:none;text-align:center;transition:all 0.2s}
+.dbtn-dk{background:var(--ink);color:#fff}.dbtn-mb{background:var(--mb);color:#fff}
+.section{padding:88px 80px}.section-cream{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.inner{max-width:1120px;margin:0 auto}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,3.6vw,48px);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:14px}
+h2 em{font-style:italic;color:var(--gold)}h2.wh{color:#fff}h2.wh em{color:var(--gold-light)}h2.ge em{color:var(--green-light)}
+h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.ey{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:16px}
+.ey::before{content:'';width:22px;height:1px;background:var(--gold)}
+.ey.lt{color:var(--gold-light)}.ey.lt::before{background:var(--gold-light)}
+.ey.gn{color:var(--green-light)}.ey.gn::before{background:var(--green-light)}
+.ey.c{justify-content:center}.ey.c::before{display:none}.ey.c::after{content:'';width:22px;height:1px;background:currentColor}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:46px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:46px}
+.card{border:1px solid var(--border);border-radius:15px;padding:28px;background:var(--warm-white);transition:all 0.25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.card:hover{border-color:var(--gold-light);box-shadow:0 10px 34px rgba(0,0,0,0.07)}.card:hover::before{transform:scaleX(1)}
+.card-ic{font-size:26px;margin-bottom:12px}
+.card p{font-size:13px;color:var(--mid);line-height:1.6;font-weight:300;margin-bottom:12px}
+.mba{display:flex;align-items:center;gap:6px;padding:8px 10px;background:rgba(196,18,48,0.05);border:1px solid rgba(196,18,48,0.15);border-radius:8px}
+.mba-d{width:6px;height:6px;background:var(--mb);border-radius:50%;flex-shrink:0}
+.mba-t{font-size:11px;color:var(--mb);font-weight:500}
+.mbna{padding:8px 10px;background:var(--cream);border:1px solid var(--border);border-radius:8px}
+.mbna-t{font-size:11px;color:var(--mid)}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
+.tc{border-radius:16px;padding:30px}
+.tc.bg{background:var(--warm-white);border:1px solid var(--border)}
+.tc.md{background:var(--ink)}
+.tc.lx{background:linear-gradient(135deg,#2C2520,#1A1512);border:1px solid rgba(184,150,90,0.3)}
+.td{width:11px;height:11px;border-radius:50%;margin-bottom:14px}
+.tn{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:600;margin-bottom:4px}
+.ts{font-size:10px;letter-spacing:0.07em;text-transform:uppercase;opacity:0.45;margin-bottom:18px}
+.bl{display:flex;flex-direction:column;gap:7px}
+.br{display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-radius:8px}
+.br.lt{background:var(--cream)}.br.dk{background:rgba(255,255,255,0.06)}
+.brn{font-size:13px;font-weight:500}.lt .brn{color:var(--ink)}.dk .brn{color:#fff}
+.brs{font-size:10px;opacity:0.4;margin-top:1px}
+.brp{font-size:12px;font-weight:600;font-family:'Cormorant Garamond',serif;color:var(--gold-light)}
+
+/* DEALER SECTION */
+.dealer-sec{background:var(--ink);padding:88px 80px;position:relative;overflow:hidden}
+.dealer-sec::before{content:'';position:absolute;top:-80px;right:-80px;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(45,125,70,0.14),transparent 70%)}
+.di{max-width:1120px;margin:0 auto}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:48px}
+.swsteps{display:flex;flex-direction:column;gap:0}
+.sws{display:flex;gap:15px;padding-bottom:22px;position:relative}
+.sws:not(:last-child)::before{content:'';position:absolute;left:13px;top:28px;bottom:0;width:1px;background:rgba(255,255,255,0.1)}
+.swn{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;font-family:'Cormorant Garamond',serif;z-index:1}
+.swb h4{font-size:14px;font-weight:500;color:#fff;margin-bottom:3px}
+.swb p{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.55}
+.swt{display:inline-block;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-light);background:rgba(212,174,114,0.1);border:1px solid rgba(212,174,114,0.2);border-radius:3px;padding:2px 7px;margin-top:4px}
+.dpcards{display:flex;flex-direction:column;gap:14px}
+.dpc{border-radius:13px;padding:22px;position:relative}
+.dpc.std{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)}
+.dpc.feat{background:rgba(45,125,70,0.14);border:1px solid rgba(45,125,70,0.35)}
+.dpb{display:inline-flex;align-items:center;gap:5px;margin-bottom:11px}
+.dpbd{width:7px;height:7px;border-radius:50%}
+.dpbt{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600}
+.dpn{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:#fff;margin-bottom:2px}
+.dpp{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:#fff;line-height:1;margin:9px 0 2px}
+.dpp span{font-size:17px;vertical-align:top;margin-top:7px;display:inline-block}
+.dppr{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:14px}
+.dpf{list-style:none;margin-bottom:14px}
+.dpf li{font-size:12px;color:rgba(255,255,255,0.6);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:6px;font-weight:300}
+.dpf li::before{content:'✓';color:var(--green-light);font-size:11px;flex-shrink:0}
+.dp-roi{padding:9px 11px;border-radius:7px;background:rgba(45,125,70,0.14);border:1px solid rgba(45,125,70,0.25)}
+.dp-roi-l{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green-light);font-weight:600;margin-bottom:3px}
+.dp-roi-v{font-size:12px;color:#fff;line-height:1.5}
+
+/* CFO MATH */
+.math-sec{background:linear-gradient(135deg,#1A2E22,#0D1A12);padding:88px 80px;position:relative;overflow:hidden}
+.math-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 30% 50%,rgba(45,125,70,0.12),transparent)}
+.mi{max-width:1120px;margin:0 auto}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:48px}
+.mtable{width:100%;border-collapse:collapse}
+.mtable th{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-weight:500;padding:9px 13px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:left}
+.mtable td{font-size:13px;padding:11px 13px;border-bottom:1px solid rgba(255,255,255,0.05);color:rgba(255,255,255,0.6)}
+.mtable tr:hover td{background:rgba(255,255,255,0.02)}
+.mtable td.gn{color:var(--green-light);font-weight:600;font-family:'Cormorant Garamond',serif;font-size:18px}
+.mtable td.wh{color:#fff;font-weight:600}
+.mtable tr.tr td{border-top:2px solid rgba(255,255,255,0.1);border-bottom:none}
+.mcols{display:flex;flex-direction:column;gap:18px}
+.mcall{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:22px}
+.mcall.hl{background:rgba(45,125,70,0.12);border-color:rgba(45,125,70,0.3)}
+.mcl{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:7px;font-weight:500}
+.mcl.gn{color:var(--green-light)}
+.mcn{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:#fff;line-height:1;margin-bottom:4px}
+.mcn.gn{color:var(--green-light)}
+.mcd{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.55}
+.zero-banner{margin-top:24px;padding:18px 22px;background:rgba(45,125,70,0.14);border:1px solid rgba(45,125,70,0.3);border-radius:11px;display:flex;align-items:flex-start;gap:14px}
+.zbi{font-size:26px;flex-shrink:0;margin-top:2px}
+.zbt{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px;font-family:'Cormorant Garamond',serif}
+.zbd{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
+
+.dgrd{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.dcard{background:var(--warm-white);border:1px solid var(--border);border-radius:15px;padding:30px;transition:all 0.25s}
+.dcard:hover{border-color:var(--gold-light);box-shadow:0 8px 26px rgba(0,0,0,0.06)}
+.dcard-ic{font-size:24px;margin-bottom:12px}
+.dcard p{font-size:13px;color:var(--mid);line-height:1.65;font-weight:300}
+.dnum{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--mb);line-height:1;margin-top:15px;padding-top:13px;border-top:1px solid var(--border)}
+.dnum-l{font-size:11px;color:var(--mid);text-transform:uppercase;letter-spacing:0.06em;margin-top:3px}
+
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;margin-top:46px}
+.isteps{display:flex;flex-direction:column;gap:0}
+.is{display:flex;gap:15px;padding-bottom:22px;position:relative}
+.is:not(:last-child)::before{content:'';position:absolute;left:13px;top:28px;bottom:0;width:1px;background:var(--border)}
+.inum{width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;font-family:'Cormorant Garamond',serif;z-index:1}
+.ib h3{font-size:16px;margin-bottom:4px}
+.ib p{font-size:13px;color:var(--mid);line-height:1.6;font-weight:300}
+.itag{display:inline-block;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);background:rgba(184,150,90,0.1);border:1px solid rgba(184,150,90,0.2);border-radius:4px;padding:2px 7px;margin-top:5px}
+.sbox{background:var(--warm-white);border:1px solid var(--border);border-radius:15px;padding:26px}
+.sbox h3{margin-bottom:16px}
+.srow{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.srow:last-of-type{border:none;padding-bottom:0}
+.sck{width:20px;height:20px;background:rgba(26,24,20,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px}
+.stit{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.sdesc{font-size:12px;color:var(--mid);line-height:1.5}
+.tbox{margin-top:14px;padding:12px;background:rgba(196,18,48,0.05);border-left:3px solid var(--mb);border-radius:0 7px 7px 0}
+.tbox-l{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--mb);font-weight:600;margin-bottom:3px}
+.tbox-v{font-size:14px;font-weight:500;color:var(--ink)}
+
+.cta-dark{background:var(--ink);padding:88px 80px;text-align:center}
+.cta-note{font-size:15px;color:rgba(255,255,255,0.4);max-width:500px;margin:0 auto 32px;font-weight:300;line-height:1.7}
+.cta-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+footer{padding:24px 52px;background:var(--ink);border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fl{display:flex;align-items:center;gap:10px}
+.fl span{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:rgba(255,255,255,0.4)}
+.fc{font-size:11px;color:rgba(255,255,255,0.2)}
+
+.fade-in{opacity:0;transform:translateY(13px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:960px){
+  nav{padding:0 20px}
+  .hero{grid-template-columns:1fr}.hero-left{padding:60px 26px}.hero-right{padding:36px 26px}
+  .section,.dealer-sec,.math-sec,.cta-dark{padding:62px 26px}
+  .grid3,.grid2,.tgrid,.dgrid,.mgrid,.igrid{grid-template-columns:1fr}
+  .room-reach{grid-template-columns:repeat(2,1fr)}
+  .dbtns{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="#" class="nav-brand"><div class="nav-mark">🏠</div><span class="nav-brand-text">NookAI</span></a>
+    <div class="nav-partner"><div class="nav-dot"></div><span class="nav-sub">Powered for</span><span class="nav-name">MasterBrand Cabinets</span></div>
+  </div>
+  <span class="nav-badge">Confidential — Strategic Demo</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Whole-Home Visualization Platform</div>
+    <h1>Every room.<br>Every remodel.<br><em>Your cabinets.</em></h1>
+    <p class="hero-sub">NookAI is a whole-home remodel visualization platform. Homeowners, contractors, designers, and realtors use it to see any space transformed before a dollar is spent. MasterBrand products are surfaced in every room where cabinetry appears.</p>
+    <div class="hero-actions">
+      <a href="#dealer" class="btn-mb">The Dealer Opportunity ↓</a>
+      <a href="https://nookai-one.vercel.app/masterbrand" target="_blank" class="btn-ghost">Try the Live Demo</a>
+    </div>
+    <div class="room-reach">
+      <div class="rtile mb"><div class="mbt">MB</div><div class="ri">🍳</div><div class="rn">Kitchen</div><div class="re">Cabinets · Island · Hardware</div></div>
+      <div class="rtile mb"><div class="mbt">MB</div><div class="ri">🚿</div><div class="rn">Bathroom</div><div class="re">Vanity · Storage</div></div>
+      <div class="rtile mb"><div class="mbt">MB</div><div class="ri">🖥️</div><div class="rn">Home Office</div><div class="re">Built-ins · Shelving</div></div>
+      <div class="rtile mb"><div class="mbt">MB</div><div class="ri">🏠</div><div class="rn">Basement</div><div class="re">Bar · Storage · Built-ins</div></div>
+      <div class="rtile"><div class="ri">🛋️</div><div class="rn">Living Room</div><div class="re">Flooring · Furniture</div></div>
+      <div class="rtile"><div class="ri">🛏️</div><div class="rn">Bedroom</div><div class="re">Furniture · Textiles</div></div>
+      <div class="rtile"><div class="ri">🪑</div><div class="rn">Dining Room</div><div class="re">Table · Chandelier</div></div>
+      <div class="rtile"><div class="ri">⛱️</div><div class="rn">Outdoor</div><div class="re">Decking · Furniture</div></div>
+      <div class="rtile"><div class="ri">🚪</div><div class="rn">Entryway</div><div class="re">Flooring · Door</div></div>
+    </div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:10px"><span style="color:rgba(196,18,48,0.8);font-weight:600">MB</span> = MasterBrand products surface in this room</div>
+  </div>
+
+  <div class="hero-right" id="demo">
+    <div class="dphone">
+      <div class="pbar"><div class="pd" style="background:#E8574A"></div><div class="pd" style="background:#F5A623;margin-left:5px"></div><div class="pd" style="background:#57C254;margin-left:5px"></div><div class="pl"></div></div>
+      <div class="rtabs">
+        <div class="rtab active" onclick="sw('k',this)">Kitchen</div>
+        <div class="rtab" onclick="sw('ba',this)">Bathroom</div>
+        <div class="rtab" onclick="sw('l',this)">Living Room</div>
+        <div class="rtab" onclick="sw('bed',this)">Bedroom</div>
+        <div class="rtab" onclick="sw('out',this)">Outdoor</div>
+      </div>
+      <div class="dcont">
+        <div class="dce" id="dE">✦ Cabinets — Nice & Solid</div>
+        <div class="dct" id="dT">Dark Kitchen Transformation</div>
+        <div class="dcv vk" id="dV"><div class="vku"></div><div class="vkb"></div><div class="vkc"></div><div class="vkl"></div></div>
+        <div class="drl" id="dRL">MasterBrand Recs<div class="mbi"><div class="mbid"></div><span class="mbit">MasterBrand</span></div></div>
+        <div class="rlist" id="rM">
+          <div class="ritem sel"><div class="rsw" style="background:linear-gradient(135deg,#161310,#0E0C09)"></div><div><div class="rn2">Brellin Matte Black</div><div class="rb">Diamond · PureStyle</div></div><div class="rp">$280–$380/lf</div></div>
+          <div class="ritem" onclick="this.classList.toggle('sel')"><div class="rsw" style="background:linear-gradient(135deg,#2C2520,#1A1512)"></div><div><div class="rn2">Benton Charcoal</div><div class="rb">Kemper · Maple</div></div><div class="rp">$310–$420/lf</div></div>
+          <div class="ritem" onclick="this.classList.toggle('sel')"><div class="rsw" style="background:linear-gradient(135deg,#1C1A2E,#141220)"></div><div><div class="rn2">Prescott Coastline</div><div class="rb">Schrock · 2025</div></div><div class="rp">$295–$400/lf</div></div>
+        </div>
+        <div class="dbtns">
+          <button class="dbtn dbtn-dk" onclick="alert('Live: renders the selected finish in the homeowner\'s actual room photo.')">✦ Render My Room</button>
+          <button class="dbtn dbtn-mb" onclick="alert('Live: MasterBrand dealer locator, filtered by brand + user zip code.')">Find a Dealer →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOM COVERAGE -->
+<section class="section section-cream">
+  <div class="inner">
+    <div class="fade-in">
+      <div class="ey">Where MasterBrand Lives in NookAI</div>
+      <h2>Four rooms. <em>That's your addressable reach.</em></h2>
+      <p style="font-size:15px;color:var(--mid);max-width:520px;font-weight:300;line-height:1.65;margin-top:8px">Of NookAI's 9 room types, 4 have cabinetry as a primary element. That's where MasterBrand products surface — by brand, finish name, and budget tier.</p>
+    </div>
+    <div class="grid3">
+      <div class="card fade-in"><div class="card-ic">🍳</div><h3>Kitchen</h3><p>Highest cabinet purchase intent of any room. Users select Cabinets, Kitchen Island, and Hardware — every cabinet element pulls from the MasterBrand catalog by budget tier.</p><div class="mba"><div class="mba-d"></div><span class="mba-t">Cabinets · Island · Hardware</span></div></div>
+      <div class="card fade-in" style="transition-delay:.08s"><div class="card-ic">🚿</div><h3>Bathroom</h3><p>Vanity and storage cabinetry are primary in every bathroom remodel. Users selecting Vanity & Sink or Storage & Shelving see MasterBrand bath cabinet lines.</p><div class="mba"><div class="mba-d"></div><span class="mba-t">Vanity Cabinet · Storage & Shelving</span></div></div>
+      <div class="card fade-in" style="transition-delay:.16s"><div class="card-ic">🖥️</div><h3>Home Office</h3><p>Built-in shelving and storage cabinetry are surging as home offices expand. Users selecting Storage & Built-in Shelving see MasterBrand built-in solutions.</p><div class="mba"><div class="mba-d"></div><span class="mba-t">Built-in Shelving · Storage</span></div></div>
+      <div class="card fade-in" style="transition-delay:.24s"><div class="card-ic">🏠</div><h3>Basement</h3><p>Bar cabinetry, storage walls, and built-ins are the top basement remodel elements. Strong MasterBrand product fit at every budget level from Aristokraft to Omega.</p><div class="mba"><div class="mba-d"></div><span class="mba-t">Bar Cabinet · Storage · Built-ins</span></div></div>
+      <div class="card fade-in" style="transition-delay:.32s"><div class="card-ic">🛋️🛏️🪑</div><h3>Living · Bedroom · Dining</h3><p>Flooring, wall color, furniture, lighting, and textiles drive these rooms. No primary cabinetry touchpoints — honest non-targets for the initial integration.</p><div class="mbna"><span class="mbna-t">No cabinet elements — not applicable</span></div></div>
+      <div class="card fade-in" style="transition-delay:.4s"><div class="card-ic">⛱️🚪</div><h3>Outdoor · Entryway</h3><p>Outdoor kitchen cabinetry is a natural future expansion as outdoor living investment grows. Not in scope for initial integration but a clear growth path.</p><div class="mbna"><span class="mbna-t">Future expansion — outdoor kitchen</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section class="section">
+  <div class="inner">
+    <div class="fade-in">
+      <div class="ey">Portfolio Integration</div>
+      <h2>Every MasterBrand brand maps to<br><em>NookAI's budget system.</em></h2>
+      <p style="font-size:15px;color:var(--mid);max-width:520px;font-weight:300;line-height:1.65;margin-top:8px">Every user picks a budget tier before getting recommendations. Every MasterBrand brand has a natural home in that system — Aristokraft to Omega.</p>
+    </div>
+    <div class="tgrid">
+      <div class="tc bg fade-in">
+        <div class="td" style="background:#6B9E6B"></div>
+        <div class="tn">Budget Smart</div>
+        <div class="ts" style="color:var(--mid)">"Maximize impact per dollar"</div>
+        <div class="bl"><div class="br lt"><div><div class="brn">Aristokraft</div><div class="brs" style="color:var(--mid)">Stock · Semi-Custom · Since 1954</div></div><div class="brp" style="color:var(--gold)">$150–$280/lf</div></div></div>
+        <p style="font-size:12px;color:var(--mid);margin-top:14px;line-height:1.6">The most common budget tier. Aristokraft gets maximum exposure — highest volume, broadest reach into the everyday homeowner market.</p>
+      </div>
+      <div class="tc md fade-in" style="transition-delay:.1s">
+        <div class="td" style="background:var(--gold)"></div>
+        <div class="tn" style="color:#fff">Nice & Solid</div>
+        <div class="ts">"Quality materials, elevated finishes"</div>
+        <div class="bl">
+          <div class="br dk"><div><div class="brn">Diamond</div><div class="brs">Semi-Custom</div></div><div class="brp">$280–$420/lf</div></div>
+          <div class="br dk"><div><div class="brn">Kemper</div><div class="brs">Semi-Custom</div></div><div class="brp">$300–$440/lf</div></div>
+          <div class="br dk"><div><div class="brn">Schrock</div><div class="brs">Semi-Custom</div></div><div class="brp">$290–$420/lf</div></div>
+          <div class="br dk"><div><div class="brn">Homecrest</div><div class="brs">Stock · Semi-Custom</div></div><div class="brp">$220–$360/lf</div></div>
+          <div class="br dk"><div><div class="brn">Kitchen Craft</div><div class="brs">Semi-Custom</div></div><div class="brp">$300–$450/lf</div></div>
+        </div>
+      </div>
+      <div class="tc lx fade-in" style="transition-delay:.2s">
+        <div class="td" style="background:var(--mb)"></div>
+        <div class="tn" style="color:#fff">Price Is No Object</div>
+        <div class="ts">"Best of the best, no compromises"</div>
+        <div class="bl">
+          <div class="br dk"><div><div class="brn">Omega</div><div class="brs">Custom · Handcrafted</div></div><div class="brp">$500–$900/lf</div></div>
+          <div class="br dk"><div><div class="brn">Decora</div><div class="brs">Custom · Premium</div></div><div class="brp">$480–$850/lf</div></div>
+          <div class="br dk"><div><div class="brn">StarMark</div><div class="brs">Custom · Handcrafted</div></div><div class="brp">$520–$950/lf</div></div>
+          <div class="br dk"><div><div class="brn">Dynasty by Omega</div><div class="brs">Custom</div></div><div class="brp">$460–$800/lf</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALER SECTION -->
+<section class="dealer-sec" id="dealer">
+  <div class="di">
+    <div class="fade-in">
+      <div class="ey lt">The Dealer Opportunity</div>
+      <h2 class="wh">MasterBrand doesn't pay for this.<br><em style="color:var(--green-light)">The dealer network does.</em></h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.5);max-width:600px;font-weight:300;line-height:1.7;margin-top:8px">MasterBrand licenses NookAI, white-labels it as a dealer tool, and offers it to their 4,000+ dealer locations as a paid subscription. Dealer revenue more than covers the acquisition cost. This is not a budget line item — it's a profit center.</p>
+    </div>
+    <div class="dgrid">
+      <div>
+        <h3 style="color:#fff;font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:8px">The in-showroom workflow</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.65;font-weight:300;margin-bottom:26px">A customer walks in to a MasterBrand dealer. They're looking at samples and struggling to visualize. The dealer pulls up NookAI on a tablet. Here's what happens.</p>
+        <div class="swsteps">
+          <div class="sws"><div class="swn">1</div><div class="swb"><h4>Customer uploads their room photo</h4><p>Dealer hands them a tablet. Customer picks any photo from their phone — their actual kitchen, bathroom, or basement. Phone quality works perfectly.</p><span class="swt">~30 seconds</span></div></div>
+          <div class="sws"><div class="swn">2</div><div class="swb"><h4>Dealer selects MasterBrand finishes</h4><p>Based on the customer's style and budget, dealer picks 2–3 finish options from the MasterBrand catalog. All options are real products — Diamond, Kemper, Omega — mapped to the customer's budget tier.</p><span class="swt">~60 seconds</span></div></div>
+          <div class="sws"><div class="swn">3</div><div class="swb"><h4>AI renders the customer's actual room</h4><p>NookAI generates a photorealistic before/after using the customer's actual room photo. Not a showroom template — their space, with those exact MasterBrand finishes.</p><span class="swt">~90 seconds</span></div></div>
+          <div class="sws"><div class="swn">4</div><div class="swb"><h4>The close happens naturally</h4><p>The customer stops imagining and starts seeing. The conversation shifts from "we'll think about it" to "what's the lead time?" The render does the selling.</p><span class="swt">The close</span></div></div>
+          <div class="sws" style="padding-bottom:0"><div class="swn">5</div><div class="swb"><h4>Customer gets a shareable link</h4><p>The render is sent to their phone. They show their spouse. They come back. No competitor gave them this. The MasterBrand dealer created a reason to return.</p><span class="swt">Retention + referral</span></div></div>
+        </div>
+      </div>
+      <div class="dpcards fade-in" style="transition-delay:.15s">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px">Dealer Subscription Pricing</div>
+        <div class="dpc std">
+          <div class="dpb"><div class="dpbd" style="background:var(--gold)"></div><span class="dpbt" style="color:var(--gold)">Single Location</span></div>
+          <div class="dpn">Solo Dealer</div>
+          <div class="dpp"><span>$</span>299</div>
+          <div class="dppr">per location / month</div>
+          <ul class="dpf">
+            <li>Unlimited in-showroom renders</li>
+            <li>Full MasterBrand catalog</li>
+            <li>All 9 room types</li>
+            <li>Customer shareable links</li>
+            <li>Before & after downloads</li>
+          </ul>
+          <div class="dp-roi"><div class="dp-roi-l">Pays for itself when</div><div class="dp-roi-v">One extra sale per month closes. Easily.</div></div>
+        </div>
+        <div class="dpc feat">
+          <div class="dpb"><div class="dpbd" style="background:var(--green-light)"></div><span class="dpbt" style="color:var(--green-light)">Best Value</span></div>
+          <div class="dpn">Multi-Location</div>
+          <div class="dpp"><span>$</span>499</div>
+          <div class="dppr">per location / month · 3+ locations</div>
+          <ul class="dpf">
+            <li>Everything in Solo Dealer</li>
+            <li>MasterBrand co-branding on all outputs</li>
+            <li>Multiple sales staff seats</li>
+            <li>Customer email capture & follow-up</li>
+            <li>Monthly analytics report per location</li>
+            <li>Priority support</li>
+          </ul>
+          <div class="dp-roi"><div class="dp-roi-l" style="color:var(--green-light)">ROI snapshot</div><div class="dp-roi-v">Avg kitchen sale: $18K–$45K. One extra close per month = 36–90× ROI on the subscription.</div></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:6px">MasterBrand sets dealer pricing and retains margin.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CFO MATH -->
+<section class="math-sec">
+  <div class="mi">
+    <div class="fade-in" style="text-align:center">
+      <div class="ey gn c" style="display:inline-flex;margin-bottom:16px">The CFO View</div>
+      <h2 class="wh ge" style="margin-bottom:10px">This doesn't cost MasterBrand anything.<br><em>The dealer network pays for it.</em></h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.4);max-width:560px;margin:0 auto;font-weight:300;line-height:1.7">At any reasonable dealer adoption rate, subscription revenue from the dealer network exceeds the cost of acquiring NookAI. This is a self-funding deal.</p>
+    </div>
+    <div class="mgrid">
+      <div class="fade-in">
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px">Dealer Revenue Model — 4,000 Dealer Network</div>
+        <table class="mtable">
+          <thead><tr><th>Adoption Scenario</th><th>Dealers</th><th>Avg Price/mo</th><th>Annual Revenue</th></tr></thead>
+          <tbody>
+            <tr><td>Conservative (5%)</td><td>200</td><td>$399</td><td class="gn">$957,600</td></tr>
+            <tr><td>Moderate (15%)</td><td>600</td><td>$399</td><td class="gn">$2.87M</td></tr>
+            <tr><td>Strong (25%)</td><td>1,000</td><td>$399</td><td class="gn">$4.79M</td></tr>
+            <tr><td>Scaled (50%)</td><td>2,000</td><td>$399</td><td class="gn">$9.58M</td></tr>
+            <tr class="tr"><td class="wh" colspan="3">Estimated NookAI license cost</td><td class="wh">$500K–$1M/yr</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:10px;font-style:italic">Based on ~4,000 MasterBrand dealer locations. 5% adoption = 200 dealers.</p>
+      </div>
+      <div class="mcols fade-in" style="transition-delay:.1s">
+        <div class="mcall">
+          <div class="mcl">At just 5% dealer adoption</div>
+          <div class="mcn">$958K</div>
+          <div class="mcd">Annual dealer revenue before MasterBrand has enrolled even 1 in 20 of its dealer locations.</div>
+        </div>
+        <div class="mcall">
+          <div class="mcl">At 25% dealer adoption</div>
+          <div class="mcn">$4.79M</div>
+          <div class="mcd">Annual recurring revenue from dealers alone — 4–9× the estimated licensing cost.</div>
+        </div>
+        <div class="mcall hl">
+          <div class="mcl gn">Net profit at 15% adoption</div>
+          <div class="mcn gn">$2.37M</div>
+          <div class="mcd" style="color:rgba(255,255,255,0.5)">Annual profit after licensing — from a tool that simultaneously drives dealer sales, generates pre-purchase data, and puts MasterBrand ahead of every competitor.</div>
+        </div>
+        <div class="zero-banner">
+          <div class="zbi">💡</div>
+          <div>
+            <div class="zbt">This is not a cost center.</div>
+            <div class="zbd">The dealer subscription model means MasterBrand acquires NookAI and recoups the entire cost at conservative adoption — within the first year. Every dealer that subscribes after breakeven is pure margin.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA -->
+<section class="section section-cream">
+  <div class="inner">
+    <div class="fade-in">
+      <div class="ey">The Data Play</div>
+      <h2>You've never had this data.<br><em>NookAI generates it from day one.</em></h2>
+    </div>
+    <div class="dgrd">
+      <div class="dcard fade-in"><div class="dcard-ic">📊</div><h3>Pre-purchase intent</h3><p>Every homeowner who visualizes a remodel in NookAI is actively planning a purchase. When they select a MasterBrand product, that's intent data months before they walk into a dealer.</p><div class="dnum">Real-time</div><div class="dnum-l">Intent by finish, brand, room, zip</div></div>
+      <div class="dcard fade-in" style="transition-delay:.1s"><div class="dcard-ic">🗺️</div><h3>Dealer network intelligence</h3><p>Geographic demand down to zip code — across all four cabinet rooms. Know which markets are surging, where inventory gaps exist, where to focus dealer support and marketing spend.</p><div class="dnum">Zip-level</div><div class="dnum-l">Demand mapping across all rooms</div></div>
+      <div class="dcard fade-in" style="transition-delay:.2s"><div class="dcard-ic">🎯</div><h3>Trend forecasting</h3><p>When Coastline navy surges in NookAI renders, that's 6–12 months before it shows in dealer sell-through. Real-time style signals across all rooms, brands, and budget tiers.</p><div class="dnum">6–12mo</div><div class="dnum-l">Ahead of dealer sales trend data</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATION -->
+<section class="section">
+  <div class="inner">
+    <div class="fade-in">
+      <div class="ey">Technical Integration</div>
+      <h2>How fast this ships.<br><em>What it takes.</em></h2>
+    </div>
+    <div class="igrid">
+      <div class="isteps fade-in">
+        <div class="is"><div class="inum">1</div><div class="ib"><h3>Product catalog feed</h3><p>MasterBrand provides brand names, door styles, finish names, price tiers, and dealer URLs by room type. CSV or API.</p><span class="itag">1–2 days · Your team provides</span></div></div>
+        <div class="is"><div class="inum">2</div><div class="ib"><h3>Room-aware catalog routing</h3><p>Kitchen → kitchen lines. Bathroom → vanity lines. Office/Basement → storage lines. Right brand, right room, right budget tier — automatically.</p><span class="itag">1 day · Logic build</span></div></div>
+        <div class="is"><div class="inum">3</div><div class="ib"><h3>Branded product cards</h3><p>Each recommendation shows brand, finish name, swatch, price range, and Find a Dealer CTA pre-filtered by brand and user zip code.</p><span class="itag">2–3 days · Frontend</span></div></div>
+        <div class="is"><div class="inum">4</div><div class="ib"><h3>Render accuracy tuning</h3><p>Finish names feed into the AI image generation prompt. Matte Black renders black. Coastline renders navy. The visual matches the real product.</p><span class="itag">1 day · Prompt engineering</span></div></div>
+        <div class="is" style="padding-bottom:0"><div class="inum">5</div><div class="ib"><h3>Analytics + dealer dashboard</h3><p>Private MasterBrand dashboard: render volume by room, brand selection rates, dealer click-throughs, geographic demand by zip. Dealer-facing dashboard with their own usage stats.</p><span class="itag">3–5 days · Dashboard</span></div></div>
+      </div>
+      <div class="fade-in" style="transition-delay:.1s">
+        <div class="sbox">
+          <h3>Full integration scope</h3>
+          <div class="srow"><div class="sck">✓</div><div><div class="stit">All 4 cabinet rooms</div><div class="sdesc">Kitchen, Bathroom, Home Office, Basement — MasterBrand surfaced wherever cabinetry is relevant.</div></div></div>
+          <div class="srow"><div class="sck">✓</div><div><div class="stit">All brands, all tiers</div><div class="sdesc">Aristokraft through Omega. The AI recommends by the user's stated budget — right brand, right tier, every time.</div></div></div>
+          <div class="srow"><div class="sck">✓</div><div><div class="stit">Dealer locator integration</div><div class="sdesc">Every product card links to dealer search filtered by brand and zip. Warm, product-specific leads go to your network.</div></div></div>
+          <div class="srow"><div class="sck">✓</div><div><div class="stit">In-showroom dealer tool</div><div class="sdesc">Dedicated dealer UI optimized for tablet in-showroom. Customer-facing render flow with dealer + MasterBrand branding.</div></div></div>
+          <div class="srow"><div class="sck">✓</div><div><div class="stit">Dealer subscription billing</div><div class="sdesc">Dealer enrollment, billing, and account management infrastructure included. MasterBrand manages the relationship; NookAI provides the platform.</div></div></div>
+          <div class="srow"><div class="sck">✓</div><div><div class="stit">White-label or co-brand</div><div class="sdesc">Lives at masterbrandcabinets.com/visualizer or any brand sub-site. Full white-label under any MasterBrand brand name.</div></div></div>
+          <div class="tbox"><div class="tbox-l">Time to full integration</div><div class="tbox-v">2–3 weeks from catalog data receipt</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-dark">
+  <div class="ey lt c" style="display:inline-flex;margin-bottom:18px">The Bottom Line</div>
+  <h2 class="wh" style="margin-bottom:14px">You tried to build this for $10M+.<br><em>It's built. It's live. And it pays for itself.</em></h2>
+  <p class="cta-note">This demo runs on publicly available MasterBrand product data. With your actual catalog — 300+ finishes, 14 brands, 4 rooms, 4,000 dealers — this goes live in 2–3 weeks and starts generating dealer subscription revenue from day one.</p>
+  <div class="cta-row">
+    <button class="btn-mb" onclick="alert('Add your contact details here before sending.')">Schedule a Follow-Up</button>
+    <button class="btn-ghost" onclick="window.open('https://nookai-one.vercel.app/masterbrand','_blank')" >Try the Live App</button>
+  </div>
+</section>
+
+<footer>
+  <div class="fl"><span>NookAI</span><span style="color:rgba(255,255,255,0.2);font-size:14px">×</span><span>MasterBrand Cabinets</span></div>
+  <div class="fc">Confidential — prepared for MasterBrand Cabinets strategic review</div>
+</footer>
+
+<script>
+const R={
+  k:{e:'✦ Cabinets — Nice & Solid',t:'Dark Kitchen Transformation',v:'vk',h:'<div class="vku"></div><div class="vkb"></div><div class="vkc"></div><div class="vkl"></div>',mb:true,recs:[{s:'linear-gradient(135deg,#161310,#0E0C09)',n:'Brellin Matte Black',b:'Diamond · PureStyle',p:'$280–$380/lf',sel:true},{s:'linear-gradient(135deg,#2C2520,#1A1512)',n:'Benton Charcoal',b:'Kemper · Maple',p:'$310–$420/lf',sel:false},{s:'linear-gradient(135deg,#1C1A2E,#141220)',n:'Prescott Coastline',b:'Schrock · 2025',p:'$295–$400/lf',sel:false}]},
+  ba:{e:'✦ Vanity Cabinets — Budget Smart',t:'Clean Spa Bathroom Refresh',v:'vba',h:'<div class="vbaw"></div><div class="vbav"></div><div class="vbam"></div><div class="vbas"></div>',mb:true,recs:[{s:'linear-gradient(135deg,#F5F0EA,#EDE6DC)',n:'Purestyle White',b:'Aristokraft · PureStyle',p:'$160–$240/lf',sel:true},{s:'linear-gradient(135deg,#D4CDC4,#BFB8AE)',n:'Stone Gray',b:'Aristokraft · Painted',p:'$155–$235/lf',sel:false},{s:'linear-gradient(135deg,#B8C4C4,#9AADAD)',n:'Churro (Coastline)',b:'Homecrest · 2025',p:'$220–$320/lf',sel:false}]},
+  l:{e:'✦ Flooring & Wall Color',t:'Warm Scandinavian Living Room',v:'vl',h:'<div class="vlw"></div><div class="vlwi"></div><div class="vls"></div><div class="vlf"></div>',mb:false,recs:[{s:'linear-gradient(135deg,#C4B09A,#B09880)',n:'White Oak LVP',b:'General Flooring Rec',p:'$4–$7/sq ft',sel:true},{s:'linear-gradient(135deg,#EDE4D8,#E0D4C4)',n:'SW Alabaster',b:'Paint Recommendation',p:'$60–$80/gal',sel:false},{s:'linear-gradient(135deg,#D4C8B0,#C4B89A)',n:'Natural Linen Rug',b:'Furnishing Rec',p:'$400–$800',sel:false}]},
+  bed:{e:'✦ Furniture & Textiles',t:'Moody Dark Bedroom Retreat',v:'vbed',h:'<div class="vbedb"></div><div class="vbedh"></div><div class="vbedp1"></div><div class="vbedp2"></div>',mb:false,recs:[{s:'linear-gradient(135deg,#2C2520,#1A1512)',n:'Walnut Platform Bed',b:'General Furniture Rec',p:'$800–$2,000',sel:true},{s:'linear-gradient(135deg,#3D3530,#2C2825)',n:'Charcoal Linen Duvet',b:'General Textile Rec',p:'$120–$300',sel:false},{s:'linear-gradient(135deg,#4A4540,#3A3530)',n:'Edison Sconce Set',b:'General Lighting Rec',p:'$200–$500',sel:false}]},
+  out:{e:'✦ Decking & Outdoor Furniture',t:'Modern Outdoor Living Space',v:'vout',h:'<div class="vosk"></div><div class="vodk"></div><div class="vogd"></div><div class="voch"></div>',mb:false,recs:[{s:'linear-gradient(135deg,#C4A882,#B09060)',n:'Composite Decking',b:'General Decking Rec',p:'$12–$22/sq ft',sel:true},{s:'linear-gradient(135deg,#8C6A42,#6A4E2E)',n:'Teak Sectional',b:'General Outdoor Rec',p:'$2,000–$5,000',sel:false},{s:'linear-gradient(135deg,#6A9A6A,#4A7A4A)',n:'Pergola & Planters',b:'General Landscape Rec',p:'$3,000–$8,000',sel:false}]}
+};
+function sw(id,tab){
+  document.querySelectorAll('.rtab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');
+  const r=R[id];
+  document.getElementById('dE').textContent=r.e;
+  document.getElementById('dT').textContent=r.t;
+  const v=document.getElementById('dV');v.className='dcv '+r.v;v.innerHTML=r.h;
+  document.getElementById('dRL').innerHTML=r.mb?'MasterBrand Recs<div class="mbi"><div class="mbid"></div><span class="mbit">MasterBrand</span></div>':'AI Recommendations';
+  document.getElementById('rM').innerHTML=r.recs.map(x=>`<div class="ritem ${x.sel?'sel':''}" onclick="this.classList.toggle('sel')"><div class="rsw" style="background:${x.s}"></div><div><div class="rn2">${x.n}</div><div class="rb">${x.b}</div></div><div class="rp">${x.p}</div></div>`).join('');
+}
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.07});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
