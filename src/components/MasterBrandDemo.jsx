@@ -1,4 +1,3 @@
-"use client";
 import { useState, useRef } from "react";
 
 const ANTHROPIC_API = "/api/claude";
@@ -403,14 +402,14 @@ Return ONLY valid JSON:
             <div>
               <div style={S.label}>Before</div>
               {photo
-                ? <img src={photo} alt="before" style={{ width: "100%", height: 210, objectFit: "cover", borderRadius: 10 }} />
+                ? <a href={photo} target="_blank" rel="noopener noreferrer"><img src={photo} alt="before" style={{ width: "100%", height: 210, objectFit: "cover", borderRadius: 10, cursor: "zoom-in" }} /></a>
                 : <div style={{ width: "100%", height: 210, borderRadius: 10, background: CREAM, display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ color: "#bbb", fontSize: 12, fontFamily: "sans-serif" }}>No photo uploaded</span></div>
               }
             </div>
             <div>
               <div style={S.mbLabel}>✦ With MasterBrand</div>
               {genImage && !genImage.startsWith("ERROR:")
-                ? <img src={genImage} alt="after" style={{ width: "100%", height: 210, objectFit: "cover", borderRadius: 10 }} />
+                ? <a href={genImage} target="_blank" rel="noopener noreferrer"><img src={genImage} alt="after" style={{ width: "100%", height: 210, objectFit: "cover", borderRadius: 10, cursor: "zoom-in" }} /></a>
                 : <div style={{ width: "100%", height: 210, borderRadius: 10, background: "linear-gradient(135deg,#FDF5F6,#F5E8EA)", display: "flex", alignItems: "center", justifyContent: "center", border: `2px dashed rgba(196,18,48,0.2)`, padding: 12 }}>
                   <div style={{ textAlign: "center" }}>
                     <div style={{ fontSize: 24, marginBottom: 8 }}>🏠</div>
